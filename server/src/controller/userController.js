@@ -3,7 +3,7 @@ const userModel = require("../model/userModel")
 exports.signup = async (request , response) => {
     try {
         let data = request.body
-        let saveData = await userModel.save(data)
+        let saveData = await userModel.create(data)
         return response.status(200).send({message: "Signup successfully", data:saveData})
     } catch (error) {
         return response.status(500).send({message: error.message})
