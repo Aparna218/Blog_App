@@ -3,24 +3,30 @@ const mongoose = require('mongoose')
 const blogModel = new mongoose.Schema(
   {
     
-    name: {
+    title: {
       type: String,
-      require: true,
-      trim: true
-    },
-    description: {
-        type: String,
-        require: true,
-        trim: true
-    },
-    category: {
+      required: true,
+      unique: true
+  },
+  description: {
       type: String,
-      require: true
-
-    },
-    information:{
-        type:String
-    }
+      required: true
+  },
+  picture: {
+      type: String,
+      required: false
+  },
+  username: {
+      type: String,
+      required: true
+  },
+  categories: {
+      type: Array,
+      required: false   
+  },
+  createdDate: {
+      type: Date
+  }
 }, { timestamps: true })
 
 

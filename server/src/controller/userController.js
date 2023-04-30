@@ -21,3 +21,11 @@ exports.login = async (request , response) => {
         return response.status(500).send({message: error.message})
     }
 }
+
+exports.logout = async (request, response ) => {
+    try {
+        
+    } catch (error) {
+        return response.status(500).send({message: error.message})
+    }
+}
