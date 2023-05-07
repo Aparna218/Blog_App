@@ -3,6 +3,7 @@ import React from 'react'
 import axios from 'axios'
 import { useState } from 'react';
 import {Box, styled,Button, Typography, TextField } from '@mui/material'
+import { API } from '../../service/api';
 
 
 const Component = styled(Box)`
@@ -24,7 +25,7 @@ const Wrapper = styled(Box)`
 
 const LoginButton = styled(Button)`
     text-transform: none;
-    background: blue;
+    background: Purple;
     color: #fff;
     height: 48px;
     border-radius: 2px;
@@ -44,7 +45,7 @@ const Text = styled(Typography)`
     font-size: 12px;
 `;
 const BlogText = styled(Typography)`
-    color: Blue;
+    color: Purple;
     font-size: 34px;
 `;
 
@@ -75,12 +76,15 @@ function Login() {
     const OnInputChange = (e) => {
         setSignup({...signup, [e.target.name]:e.target.value})
     }
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        axios.post('http://localhost:5000/signup',{signup})
-        .then(response=>console.log(response.data))
-        .catch(error=>console.log(error))
-    }
+    
+    
+    // const handleSubmit = (e) => {
+    //     e.preventDefault()
+    //    axios.post('http://localhost:5000/signup',{signup})
+    //     .then(response=>console.log(response.data))
+    //     .catch(error=>console.log(error))
+    //     setSignup(signupInitialValues)
+    // }
     
     const toggleSignup = () => {
         account === 'login' ? toggleAccount('signup') : toggleAccount('login');
@@ -100,7 +104,7 @@ function Login() {
             <TextField variant='standard' onChange={(e)=>OnInputChange(e)} label='Enter Name'>name</TextField>
             <TextField variant='standard' onChange={(e)=>OnInputChange(e)} label='Enter Username'>username</TextField>
             <TextField variant='standard' onChange={(e)=>OnInputChange(e)} label='Enter Password'>password</TextField>
-            <LoginButton variant='contained' onSubmit={(e)=>handleSubmit(e)}>Singup</LoginButton>
+            <LoginButton variant='contained' onClick={(e)=>handleSubmit(e)}>Singup</LoginButton>
             <Text style={{ textAlign: 'center' }}>OR</Text>
             <SignupButton onClick={()=>toggleSignup()}>Already have an account</SignupButton>
         </Wrapper>

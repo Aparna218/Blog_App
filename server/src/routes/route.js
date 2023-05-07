@@ -1,17 +1,33 @@
-const express = require('express');
-const router = express.Router();
+const mongoose = require('mongoose')
 
-const {login, signup} = require("../controller/userController")
-const {createPost, getPost, updatePost, deletePost} = require("../controller/blogController")
+const blogModel = new mongoose.Schema(
+  {
+    
+    title: {
+      type: String,
+      required: true,
+      unique: true
+  },
+  description: {
+      type: String,
+      required: true
+  },
+  picture: {
+      type: String,
+      required: false
+  },
+  username: {
+      type: String,
+      required: true
+  },
+  categories: {
+      type: Array,
+      required: false   
+  },
+  createdDate: {
+      type: Date
+  }
+}, { timestamps: true })
 
 
-router.post('/signup',signup);
-router.get('/login', login);
-
-router.post('/createPost', createPost);
-router.get('/getPost', getPost);
-router.put('updatePost', updatePost);
-router.delete('deletePost', deletePost)
-
-
-module.exports = router;
+module.exports = mongoose.model('blog', blogModel)

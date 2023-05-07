@@ -59,4 +59,3 @@ exports.deletePost = async (request , response) => {
         return response.status(500).send({message: error.message})
     }
 }
-
